@@ -1,0 +1,14 @@
+.record-main {
+  width: 100vw;
+  height: auto;
+  min-height: 100vh;
+  background-color: #f1f5f9;
+}
+
+.record-header {
+  width: 100%;
+  height: 65px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

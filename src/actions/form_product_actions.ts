@@ -1,0 +1,19 @@
+interface form_actions {
+  SET_ID: string
+  SET_NAME: string
+  SET_DESCRIPTION: string
+  SET_LOGO_URL: string
+  SET_DATA_RELEASE: string
+  SET_DATA_REVISION: string
+}
+
+const FORM_PRODUCT_ACTIONS: form_actions = {
+  SET_ID: 'SET_ID',
+  SET_NAME: 'SET_NAME',
+  SET_DESCRIPTION: 'SET_DESCRIPTION',
+  SET_LOGO_URL: 'SET_LOGO_URL',
+  SET_DATA_RELEASE: 'SET_DATA_RELEASE',
+  SET_DATA_REVISION: 'SET_DATA_REVISION'
+}
+
+export { FORM_PRODUCT_ACTIONS }
