@@ -1,0 +1,18 @@
+.section-register-edit{
+  display: grid;
+  justify-items: center;
+}
+
+.container-register{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1.5rem;
+  background-color: white;
+  border-radius: .5rem;
+}
+
+.container-register h2{
+  text-align: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid #ccc;
+}

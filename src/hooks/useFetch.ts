@@ -2,6 +2,7 @@
 
 import { fetchParams, requestParams, response } from '@/types'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 const useFetch = (): fetchParams => {
   const [options, setOptions] = useState<requestParams | null>(null)
@@ -11,17 +12,18 @@ const useFetch = (): fetchParams => {
   useEffect(() => {
     const fetchData = async (): Promise<any> => {
       if (options !== null) {
-        const { url, method = 'GET', headers = { authorId: '123' }, body = {} } = options
-
+        const { url, method = 'GET', headers: headersList = { authorId: '123' }, body = {} } = options
+        console.log(headersList)
         try {
-          const res = await fetch(url, {
+          const res = await axios({
             method,
-            headers,
-            body: JSON.stringify(body)
+            url,
+            headers: headersList,
+            data: body
           })
+          console.log(res)
 
-          const json = await res.json()
-          setResponse(json)
+          setResponse(res.data)
         } catch (error: any) {
           setError(error)
         }

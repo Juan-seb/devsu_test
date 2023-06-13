@@ -55,10 +55,10 @@ const validateDescription = (description: string): string | null => {
   return error
 }
 
-const validateLogoUrl = (logo_url: string): string | null => {
+const validateLogoUrl = (logo: string): string | null => {
   let error: null | string = null
 
-  if (logo_url.length === 0) {
+  if (logo.length === 0) {
     error = 'Ingrese una url!'
   }
 
@@ -71,8 +71,9 @@ const validateDateRelease = (date_release: string): string | null => {
   const [year, month, day] = date_release.split('-')
   const dateInput = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
   const date = new Date()
+  const currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
 
-  if (dateInput < date) {
+  if (dateInput < currentDate) {
     error = 'Fecha no valida, el año no puede ser menor al actual!'
     return error
   }

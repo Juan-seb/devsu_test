@@ -1,10 +1,10 @@
 'use client'
 
-import { TOUCHED_STATES } from '@/helpers/touched_states'
-import './styles.css'
 import { propsInput } from '@/types'
+import './styles.css'
+import { TOUCHED_STATES } from '@/helpers/touched_states'
 
-const InputText = ({ span, name, value, handleChange, handleBlur, error, touched, disabled }: propsInput): JSX.Element => {
+const InputDate = ({ span, name, value, handleChange, handleBlur, error, touched, disabled }: propsInput): JSX.Element => {
   return (
     <section className='section-input'>
       <label>
@@ -12,10 +12,10 @@ const InputText = ({ span, name, value, handleChange, handleBlur, error, touched
           {span}
         </span>
         <input
-          type='text'
+          type='date'
           name={name}
           value={value}
-          className='input-text'
+          className='input-date'
           onChange={handleChange}
           onBlur={handleBlur}
           disabled={disabled}
@@ -28,4 +28,4 @@ const InputText = ({ span, name, value, handleChange, handleBlur, error, touched
   )
 }
 
-export default InputText
+export default InputDate

@@ -1,0 +1,38 @@
+/* w-full px-1 py-1 mt-1 outline-none border border-blue-400 focus:ring-2 focus:ring-blue-400 rounded-md */
+
+.section-input {
+  width: 310px;
+  margin-top: 12px;
+}
+
+.span-title-input {
+  font-weight: 500;
+  width: 100%;
+  font-size: 14px;
+}
+
+.input-date {
+  width: 100%;
+  padding-left: 0.3rem;
+  padding-right: 0.3rem;
+  padding-top: 0.65rem;
+  padding-bottom: 0.65rem;
+  margin-top: 0.25rem;
+  outline: none;
+  border: 1px solid rgb(70, 70, 70);
+  border-radius: 0.20rem;
+  font-family: ui-monospace, Menlo, Monaco, 'Cascadia Mono', 'Segoe UI Mono',
+  'Roboto Mono', 'Oxygen Mono', 'Ubuntu Monospace', 'Source Code Pro',
+  'Fira Mono', 'Droid Sans Mono', 'Courier New', monospace;
+  font-size: 14px;
+}
+
+.input-date:focus {
+  border: 2px solid #93c5fd;
+}
+
+.error-message {
+  color: #f87171;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}

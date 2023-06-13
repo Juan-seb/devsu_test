@@ -1,0 +1,17 @@
+.form-register-edit{
+  width: 340px;
+  padding: .5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .form-register-edit{
+    width: 700px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }  
+}
