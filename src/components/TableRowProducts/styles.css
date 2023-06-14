@@ -1,0 +1,39 @@
+.table-product {
+  width: 100%;
+  display: flex;
+  padding: .5rem 0;
+  border-bottom: 1px solid gray;
+  align-items: center;
+}
+
+.table-cell-product-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  height: 50px;
+}
+
+.image-container {
+  border: 1px solid transparent;
+  border-radius: 30px;
+  width: 45px;
+  height: 45px;
+}
+
+.image-next {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.table-cell-product {
+  width: 250px;
+  height: auto;
+}
+
+.table-cell-options {
+  width: 60px;
+  flex-grow: 0;
+  color: transparent;
+}

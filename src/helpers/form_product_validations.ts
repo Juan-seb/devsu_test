@@ -19,18 +19,6 @@ const validateId = (id: string): string | null => {
     return error
   }
 
-  if (id.length >= 3 && id.length <= 8) {
-    fetchValidateId(id).then(res => {
-      if (!res) {
-        error = 'ID no valido!'
-        return error
-      }
-    }).catch(error => {
-      error = 'ID no valido!'
-      return error
-    })
-  }
-
   return error
 }
 
@@ -81,6 +69,7 @@ const validateDateRelease = (date_release: string): string | null => {
 }
 
 export {
+  fetchValidateId,
   validateId,
   validateName,
   validateDescription,

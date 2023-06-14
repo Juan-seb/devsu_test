@@ -1,0 +1,10 @@
+.count-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 0 0 0;
+}
+
+.count-results {
+  font-size: 16px;
+  font-weight: 600;
+}

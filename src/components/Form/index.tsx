@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/naming-convention */
 'use client'
 
@@ -8,6 +9,7 @@ import { useState, useEffect } from 'react'
 import InputText from '../InputText'
 import { FORM_PRODUCT_ACTIONS, actionsType } from '@/actions/form_product_actions'
 import InputDate from '../InputDate'
+import { fetchValidateId } from '@/helpers/form_product_validations'
 
 const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm): JSX.Element => {
   const { values, errors, touched } = state
@@ -27,6 +29,20 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
     }
   }, [id, name, description, logo, date_release, date_revision])
 
+  const handleId = async (e: React.ChangeEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>): Promise<void> => {
+    dispatch({ type: FORM_PRODUCT_ACTIONS.SET_ID as actionsType, payload: e.target.value })
+
+    try {
+      const exists: boolean = await fetchValidateId(e.target.value)
+
+      if (exists) {
+        dispatch({ type: FORM_PRODUCT_ACTIONS.SET_ERROR_ID as actionsType, payload: { value: e.target.value, exists } })
+      }
+    } catch (err: any) {
+      console.log(err)
+    }
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -36,8 +52,8 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
         span='Id:'
         name='id'
         value={id}
-        handleChange={(e) => dispatch({ type: FORM_PRODUCT_ACTIONS.SET_ID as actionsType, payload: e.target.value })}
-        handleBlur={(e) => dispatch({ type: FORM_PRODUCT_ACTIONS.SET_ID as actionsType, payload: e.target.value })}
+        handleChange={handleId}
+        handleBlur={handleId}
         error={errors.id}
         touched={touched.id as touchedStates}
         disabled={initialData?.id !== undefined}

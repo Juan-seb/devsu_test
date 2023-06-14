@@ -1,28 +1,46 @@
-.table-container{
+.table-container {
   width: 100%;
-  padding: 1rem;
+  padding: 1.5rem;
   margin-top: .8rem;
-  background-color: white
+  background-color: white;
 }
 
-.table-products {
-  width: 100%;
-  min-width: 560px;
+.table-scroll {
   overflow-x: scroll;
 }
 
-.table-header{
+.table-products {
+  width: 1210px;
+  margin: auto;
+}
+
+.table-header {
   width: 100%;
   display: flex;
   padding: 1rem 0;
+  background-color: #f1f5f9;
+  border-bottom: 1px solid gray;
+  font-weight: 600;
 }
 
-.table-cell{
-  min-width: 100px;
-  flex-grow: 1;
+.table-cell-logo {
+  width: 150px;
+  text-align: center;
 }
 
-.table-cell-options{
-  width: 80px;
+.table-cell {
+  width: 250px;
+}
+
+.table-cell-options {
+  width: 60px;
   flex-grow: 0;
+  color: transparent;
 }
+
+@media screen and (min-width: 1200px) {
+  .table-products {
+    width: 100%;
+  }
+}
+  

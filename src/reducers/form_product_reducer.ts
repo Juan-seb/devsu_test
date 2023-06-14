@@ -1,5 +1,5 @@
 import { FORM_PRODUCT_ACTIONS } from '@/actions/form_product_actions'
-import { initialStateReducer, actionType, values } from '@/types'
+import { initialStateReducer, actionType, values, actionErrorId } from '@/types'
 import { TOUCHED_STATES } from '@/helpers/touched_states'
 import { validateId, validateName, validateDescription, validateLogoUrl, validateDateRelease } from '@/helpers/form_product_validations'
 
@@ -42,6 +42,25 @@ function formProductReducer (state: initialStateReducer, action: actionType): in
           }
         : {
             values: { ...state.values, id: value },
+            errors: { ...state.errors },
+            touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_OK }
+          }
+    }
+    case (FORM_PRODUCT_ACTIONS.SET_ERROR_ID):{
+      const properties: actionErrorId = action.payload as actionErrorId
+
+      if ((!properties.exists) && state.errors.id !== undefined) {
+        delete state.errors.id
+      }
+
+      return properties.exists
+        ? {
+            values: { ...state.values, id: properties.value },
+            errors: { ...state.errors, id: 'El ID ya existe' },
+            touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_ERROR }
+          }
+        : {
+            values: { ...state.values, id: properties.value },
             errors: { ...state.errors },
             touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_OK }
           }

@@ -1,5 +1,6 @@
 interface form_actions {
   SET_ID: string
+  SET_ERROR_ID: string
   SET_NAME: string
   SET_DESCRIPTION: string
   SET_LOGO: string
@@ -10,6 +11,7 @@ interface form_actions {
 
 const FORM_PRODUCT_ACTIONS: form_actions = {
   SET_ID: 'SET_ID',
+  SET_ERROR_ID: 'SET_ERROR_ID',
   SET_NAME: 'SET_NAME',
   SET_DESCRIPTION: 'SET_DESCRIPTION',
   SET_LOGO: 'SET_LOGO',
@@ -18,6 +20,6 @@ const FORM_PRODUCT_ACTIONS: form_actions = {
   SET_VALUES: 'SET_VALUES'
 }
 
-export type actionsType = 'SET_ID' | 'SET_NAME' | 'SET_DESCRIPTION' | 'SET_LOGO' | 'SET_DATE_RELEASE' | 'SET_DATE_REVISION' | 'SET_VALUES'
+export type actionsType = 'SET_ID' | 'SET_NAME' | 'SET_DESCRIPTION' | 'SET_LOGO' | 'SET_DATE_RELEASE' | 'SET_DATE_REVISION' | 'SET_VALUES' | 'SET_ERROR_ID'
 
 export { FORM_PRODUCT_ACTIONS }

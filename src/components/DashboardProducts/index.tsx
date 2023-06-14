@@ -22,7 +22,11 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
     }
 
     setPages(pagesArray)
-  }, [])
+
+    if (pagesArray.length < pageSelected) {
+      setPageSelected(1)
+    }
+  }, [productsFiltered])
 
   useEffect(() => {
     if (search === '') {
@@ -30,7 +34,18 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
       return
     }
 
-    setProductsFiltered(products.filter((product: values) => Object.values(product).join(' ').toLowerCase().includes(search.toLowerCase())))
+    const results = products.filter((product: values) => {
+      const valuesProduct = {
+        id: product.id,
+        name: product.name,
+        description: product.description
+      }
+
+      return Object.values(valuesProduct).join(' ').toLowerCase().includes(search.toLowerCase())
+    })
+
+    setProductsFiltered(results)
+    setPagination([0, 5])
   }, [search])
 
   useEffect(() => {
@@ -41,7 +56,14 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
     <section className='dashboard-section'>
       <article className='dashboard-container'>
         <SearchOrAggregate search={search} setSearch={setSearch} />
-        <TableProducts products={productsFiltered.slice(pagination[0], pagination[1])} />
+        <TableProducts
+          products={products}
+          productsToShow={productsFiltered.slice(pagination[0], pagination[1])}
+          setProductsFiltered={setProductsFiltered}
+          results={productsFiltered.length}
+          pages={pages}
+          setPageSelected={setPageSelected}
+        />
       </article>
     </section>
   )

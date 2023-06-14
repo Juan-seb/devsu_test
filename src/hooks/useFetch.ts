@@ -10,6 +10,7 @@ const useFetch = (): fetchParams => {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    console.log(options)
     const fetchData = async (): Promise<any> => {
       if (options !== null) {
         const { url, method = 'GET', headers: headersList = { authorId: '123' }, body = {} } = options
