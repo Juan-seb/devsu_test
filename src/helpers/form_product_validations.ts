@@ -15,7 +15,7 @@ const fetchValidateId = async (id: string): Promise<boolean> => {
 const validateId = (id: string): string | null => {
   let error: null | string = null
   if (id.length === 0 || id.length < 3 || id.length > 8) {
-    error = 'ID no valido, minimo 3 caracteres, maximo 10!'
+    error = 'ID no valido, 3 - 10 caracteres!'
     return error
   }
 
@@ -36,10 +36,9 @@ const validateId = (id: string): string | null => {
 
 const validateName = (name: string): string | null => {
   let error: null | string = null
-  const regex = /^[a-zA-Z ,.'-]+$/i
 
-  if (name.length === 0 || name.length < 5 || name.length > 100 || !regex.test(name)) {
-    error = 'Nombre no valido, minimo 5 caracteres, maximo 100!'
+  if (name.length === 0 || name.length < 5 || name.length > 100) {
+    error = 'Nombre no valido, 5 - 100 caracteres!'
   }
 
   return error
@@ -49,7 +48,7 @@ const validateDescription = (description: string): string | null => {
   let error: null | string = null
 
   if (description.length === 0 || description.length < 10 || description.length > 200) {
-    error = 'Descripción no valida, minimo 10 caracteres, maximo 200!'
+    error = 'Descripción no valida, 10 - 200 caracteres!'
   }
 
   return error
@@ -74,7 +73,7 @@ const validateDateRelease = (date_release: string): string | null => {
   const currentDate = new Date(date.getFullYear(), date.getMonth(), date.getDate())
 
   if (dateInput < currentDate) {
-    error = 'Fecha no valida, el año no puede ser menor al actual!'
+    error = 'Fecha no valida!'
     return error
   }
 

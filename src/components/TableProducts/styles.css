@@ -1,0 +1,28 @@
+.table-container{
+  width: 100%;
+  padding: 1rem;
+  margin-top: .8rem;
+  background-color: white
+}
+
+.table-products {
+  width: 100%;
+  min-width: 560px;
+  overflow-x: scroll;
+}
+
+.table-header{
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+}
+
+.table-cell{
+  min-width: 100px;
+  flex-grow: 1;
+}
+
+.table-cell-options{
+  width: 80px;
+  flex-grow: 0;
+}

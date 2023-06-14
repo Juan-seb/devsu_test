@@ -12,6 +12,6 @@
     width: 700px;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 12px;
+    column-gap: 12px;
   }  
 }

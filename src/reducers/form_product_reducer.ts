@@ -1,5 +1,5 @@
 import { FORM_PRODUCT_ACTIONS } from '@/actions/form_product_actions'
-import { initialStateReducer, actionType } from '@/types'
+import { initialStateReducer, actionType, values } from '@/types'
 import { TOUCHED_STATES } from '@/helpers/touched_states'
 import { validateId, validateName, validateDescription, validateLogoUrl, validateDateRelease } from '@/helpers/form_product_validations'
 
@@ -71,9 +71,9 @@ function formProductReducer (state: initialStateReducer, action: actionType): in
       const value: string = action.payload as string
 
       const error: string | null = validateDescription(value)
-
+      console.log(error)
       if ((error === null) && state.errors.description !== undefined) {
-        delete state.errors.name
+        delete state.errors.description
       }
 
       return error !== null
@@ -139,6 +139,21 @@ function formProductReducer (state: initialStateReducer, action: actionType): in
         values: { ...state.values, date_revision: `${parseInt(year) + 1}-${month}-${day}` },
         errors: { ...state.errors },
         touched: { ...state.touched, date_revision: TOUCHED_STATES.TOUCHED_OK }
+      }
+    }
+    case (FORM_PRODUCT_ACTIONS.SET_VALUES): {
+      const values: values = action.payload as values
+      const dateRelease = values.date_release.slice(0, 10)
+      const dateRevision = values.date_revision.slice(0, 10)
+
+      return {
+        values: {
+          ...values,
+          date_release: dateRelease,
+          date_revision: dateRevision
+        },
+        errors: { ...state.errors },
+        touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_OK, logo: TOUCHED_STATES.TOUCHED_OK }
       }
     }
     default:

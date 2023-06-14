@@ -1,8 +1,9 @@
 /* w-full px-1 py-1 mt-1 outline-none border border-blue-400 focus:ring-2 focus:ring-blue-400 rounded-md */
 
 .section-input {
-  width: 310px;
+  width: 100%;
   margin-top: 12px;
+  height: 80px;
 }
 
 .span-title-input {
@@ -35,4 +36,10 @@
   color: #f87171;
   font-size: 0.875rem;
   margin-top: 0.25rem;
+}
+
+@media screen and (min-width: 768px){
+  .section-input {
+    width: 310px;
+  }
 }

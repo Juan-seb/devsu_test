@@ -1,9 +1,9 @@
+import '../styles.css'
+import { values } from '@/types'
+import axios from 'axios'
 import Image from 'next/image'
 import logo from '@/../public/banco-pichincha-logo.png'
-import './styles.css'
-import DashboardProducts from '@/components/DashboardProducts'
-import axios from 'axios'
-import { values } from '@/types'
+import EditProduct from '@/components/EditProduct'
 
 const getProducts = async (): Promise<any> => await axios({
   method: 'GET',
@@ -13,12 +13,13 @@ const getProducts = async (): Promise<any> => await axios({
   }
 })
 
-const Home = async (): Promise<any> => {
+const EditProductPage = async ({ params }: { params: { idProduct: string } }): Promise<any> => {
   const { data }: { data: values[] } = await getProducts()
+  const productToEdit = data.filter((product: values) => product.id === params.idProduct)
 
   return (
-    <main className='home-main'>
-      <header className='home-header'>
+    <main className='record-main'>
+      <header className='record-header'>
         <Image
           src={logo}
           alt='Banco Pichincha'
@@ -26,9 +27,9 @@ const Home = async (): Promise<any> => {
           height={38}
         />
       </header>
-      <DashboardProducts products={data} />
+      <EditProduct data={productToEdit[0]} />
     </main>
   )
 }
 
-export default Home
+export default EditProductPage
