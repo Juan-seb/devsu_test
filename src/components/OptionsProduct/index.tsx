@@ -13,10 +13,12 @@ const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered, set
   const router = useRouter()
   const [showOptions, setShowOptions] = useState<boolean>(false)
 
+  // Handle click event for edit button to redirect to the edit page
   const handleClickEdit = (): void => {
     router.push(`/record/${id}`)
   }
 
+  // Delete the product (request and array) and update the products list
   const handleClickDelete = async (): Promise<any> => {
     const indexProduct = products.findIndex((product) => product.id === id)
     products.splice(indexProduct, 1)

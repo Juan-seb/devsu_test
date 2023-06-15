@@ -15,11 +15,13 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
   const [pages, setPages] = useState<number[]>([])
   const [pageSelected, setPageSelected] = useState<number>(1)
 
+  // Refresh the router on component mount
   useEffect(() => {
     router.refresh()
     console.log('refresh')
   }, [])
 
+  // Calculate the total number of pages based on the filtered products
   useEffect(() => {
     const pages = Math.ceil(productsFiltered.length / 5)
     const pagesArray = []
@@ -30,11 +32,13 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
 
     setPages(pagesArray)
 
+    // Reset the selected page if it exceeds the available pages
     if (pagesArray.length < pageSelected) {
       setPageSelected(1)
     }
   }, [productsFiltered])
 
+  // Filter products based on the search query
   useEffect(() => {
     if (search === '') {
       setProductsFiltered([...products])
@@ -48,6 +52,7 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
         description: product.description
       }
 
+      // Join only three features of the product to search
       return Object.values(valuesProduct).join(' ').toLowerCase().includes(search.toLowerCase())
     })
 
@@ -55,6 +60,7 @@ const DashboardProducts = ({ products }: { products: values[] }): JSX.Element =>
     setPagination([0, 5])
   }, [search])
 
+  // Update pagination range when the selected page changes
   useEffect(() => {
     setPagination([(pageSelected * 5) - 5, pageSelected * 5])
   }, [pageSelected])

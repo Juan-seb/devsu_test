@@ -15,10 +15,12 @@ const EditProduct = ({ data }: { data: values }): JSX.Element => {
   const [state, dispatch] = useReducer(formProductReducer, initialStateData)
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
+  // Refresh the router on component mount for refresh the data
   useEffect(() => {
     router.refresh()
   }, [])
 
+  // Using the status show the message of success or error and then redirect to the dashboard
   useEffect(() => {
     const status = fetcher.status
 
@@ -33,6 +35,7 @@ const EditProduct = ({ data }: { data: values }): JSX.Element => {
     }
   }, [fetcher.status])
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
 

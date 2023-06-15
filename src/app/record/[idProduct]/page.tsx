@@ -1,10 +1,10 @@
 import '../styles.css'
 import { values } from '@/types'
-import axios from 'axios'
 import Image from 'next/image'
 import logo from '@/../public/banco-pichincha-logo.png'
 import EditProduct from '@/components/EditProduct'
 
+// Get products from API
 const getProducts = async (): Promise<any> => await fetch('https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products', {
   cache: 'no-store',
   headers: {
@@ -14,6 +14,7 @@ const getProducts = async (): Promise<any> => await fetch('https://tribu-ti-staf
 
 const EditProductPage = async ({ params }: { params: { idProduct: string } }): Promise<any> => {
   const data = await getProducts()
+  // Filter to obtain the product to edit
   const productToEdit = data.filter((product: values) => product.id === params.idProduct)
 
   return (

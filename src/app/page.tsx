@@ -3,6 +3,7 @@ import logo from '@/../public/banco-pichincha-logo.png'
 import './styles.css'
 import DashboardProducts from '@/components/DashboardProducts'
 
+// Get products from API
 const getProducts = async (): Promise<any> => await fetch('https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products', {
   cache: 'no-store',
   headers: {

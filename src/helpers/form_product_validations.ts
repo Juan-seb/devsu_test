@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 // This function validate if the id already exists in the database
-
 const fetchValidateId = async (id: string): Promise<boolean> => {
   try {
     const res = await fetch(`https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products/verification?id=${id}`)
@@ -12,6 +11,7 @@ const fetchValidateId = async (id: string): Promise<boolean> => {
   }
 }
 
+// Checks the length of the ID and returns an error message
 const validateId = (id: string): string | null => {
   let error: null | string = null
   if (id.length === 0 || id.length < 3 || id.length > 8) {
@@ -22,6 +22,7 @@ const validateId = (id: string): string | null => {
   return error
 }
 
+// Checks the length of the name and returns an error message
 const validateName = (name: string): string | null => {
   let error: null | string = null
 
@@ -32,6 +33,7 @@ const validateName = (name: string): string | null => {
   return error
 }
 
+// Checks the length of the validateDescription and returns an error message
 const validateDescription = (description: string): string | null => {
   let error: null | string = null
 
@@ -42,6 +44,7 @@ const validateDescription = (description: string): string | null => {
   return error
 }
 
+// Checks the length of the ID and returns an error messsage
 const validateLogoUrl = (logo: string): string | null => {
   let error: null | string = null
 
@@ -52,6 +55,7 @@ const validateLogoUrl = (logo: string): string | null => {
   return error
 }
 
+// Checks if the date provided is valid
 const validateDateRelease = (date_release: string): string | null => {
   let error: null | string = null
 

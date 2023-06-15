@@ -13,6 +13,7 @@ const RegisterProduct = (): JSX.Element => {
   const [state, dispatch] = useReducer(formProductReducer, initialStateData)
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
+  // Show message if the product was registered successfully and then hidden it
   useEffect(() => {
     const status = fetcher.status
 
@@ -26,6 +27,7 @@ const RegisterProduct = (): JSX.Element => {
     }
   }, [fetcher.status])
 
+  // Handle form submission
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
 
@@ -40,6 +42,7 @@ const RegisterProduct = (): JSX.Element => {
       }
     })
 
+    // Reset the form values
     dispatch({ type: FORM_PRODUCT_ACTIONS.SET_RESET as actionsType })
   }
 

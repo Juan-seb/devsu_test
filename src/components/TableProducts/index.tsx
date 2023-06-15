@@ -11,6 +11,7 @@ const TableProducts = ({ products, productsToShow, setProductsFiltered, results,
   const [pageStatus, setPageStatus] = useState<number>(0)
   const [showMessage, setShowMessage] = useState<boolean>(false)
 
+  // Show message if the product was deleted successfully and then hidden it
   useEffect(() => {
     if (pageStatus === 0) return
 

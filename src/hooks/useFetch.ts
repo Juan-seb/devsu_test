@@ -5,10 +5,10 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const useFetch = (): fetchParams => {
-  const [options, setOptions] = useState<requestParams | null>(null)
-  const [response, setResponse] = useState<response[] | null>(null)
-  const [error, setError] = useState<string | null>(null)
-  const [status, setStatus] = useState<number | null>(null)
+  const [options, setOptions] = useState<requestParams | null>(null) // store the request options
+  const [response, setResponse] = useState<response[] | null>(null) // store the response
+  const [error, setError] = useState<string | null>(null) // store the error
+  const [status, setStatus] = useState<number | null>(null) // store the status
 
   useEffect(() => {
     const fetchData = async (): Promise<any> => {
