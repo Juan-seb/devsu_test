@@ -9,7 +9,7 @@ import dots from '@/../public/more.png'
 import Image from 'next/image'
 import axios from 'axios'
 
-const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered }: propsOptionsProduct): JSX.Element => {
+const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered, setPageStatus }: propsOptionsProduct): JSX.Element => {
   const router = useRouter()
   const [showOptions, setShowOptions] = useState<boolean>(false)
 
@@ -22,7 +22,7 @@ const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered }: p
     products.splice(indexProduct, 1)
 
     try {
-      await axios({
+      const res = await axios({
         method: 'DELETE',
         url: `https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products?id=${id}`,
         headers: {
@@ -31,13 +31,14 @@ const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered }: p
       })
 
       setProductsFiltered([...products])
+      setPageStatus(res.status)
     } catch (error: any) {
       console.log(error)
     }
   }
 
   return (
-    <section className='options-container'>
+    <section className='options-container-product'>
       <div className='options-image' onClick={() => setShowOptions(!showOptions)}>
         <Image
           src={dots}

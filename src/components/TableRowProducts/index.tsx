@@ -7,7 +7,7 @@ import './styles.css'
 import { useState } from 'react'
 import OptionsProduct from '../OptionsProduct'
 
-const TableRowProducts = ({ product, products, productsToShow, setProductsFiltered }: propsTableRow): JSX.Element => {
+const TableRowProducts = ({ product, products, productsToShow, setProductsFiltered, setPageStatus }: propsTableRow): JSX.Element => {
   const { name, description, logo, date_release, date_revision } = product
   const [dateRelease] = useState<string[]>(date_release.slice(0, 10).split('-'))
   const [dateRevision] = useState<string[]>(date_revision.slice(0, 10).split('-'))
@@ -46,7 +46,13 @@ const TableRowProducts = ({ product, products, productsToShow, setProductsFilter
         {`${dateRevision[2]}/${dateRevision[1]}/${dateRevision[0]}`}
       </div>
       <div className='table-cell-product-options'>
-        <OptionsProduct id={product.id} products={products} productsToShow={productsToShow} setProductsFiltered={setProductsFiltered} />
+        <OptionsProduct
+          id={product.id}
+          products={products}
+          productsToShow={productsToShow}
+          setProductsFiltered={setProductsFiltered}
+          setPageStatus={setPageStatus}
+        />
       </div>
     </div>
   )

@@ -172,7 +172,15 @@ function formProductReducer (state: initialStateReducer, action: actionType): in
           date_revision: dateRevision
         },
         errors: { ...state.errors },
-        touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_OK, logo: TOUCHED_STATES.TOUCHED_OK }
+        touched: {
+          ...state.touched,
+          id: TOUCHED_STATES.TOUCHED_OK,
+          logo: TOUCHED_STATES.TOUCHED_OK,
+          date_release: TOUCHED_STATES.TOUCHED_OK,
+          date_revision: TOUCHED_STATES.TOUCHED_OK,
+          name: TOUCHED_STATES.TOUCHED_OK,
+          description: TOUCHED_STATES.TOUCHED_OK
+        }
       }
     }
     case (FORM_PRODUCT_ACTIONS.SET_RESET): {

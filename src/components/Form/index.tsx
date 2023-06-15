@@ -23,7 +23,6 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
   }, [initialData])
 
   useEffect(() => {
-    console.log(values, errors, touched)
     if (Object.keys(errors).length === 0 && Object.values(touched).every(el => el === TOUCHED_STATES.TOUCHED_OK)) {
       setIsDisabled(false)
     }
@@ -122,8 +121,8 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
         disabled
       />
       <div className='options-container'>
-        <input type='reset' value='Reiniciar' className='options-reset' />
-        <input type='submit' value={textBtn} disabled={isDisabled} className={`options-submit ${isDisabled ? 'opacity-60' : ''}`} />
+        <input type='reset' value='Reiniciar' disabled={textBtn === 'Editar producto'} className={`options-reset ${textBtn === 'Editar producto' ? 'opacity-60' : ''}`} />
+        <input type='submit' value={textBtn} disabled={isDisabled} className={`options-submit ${isDisabled ? 'opacity-60' : ''}`} title='Debe modificar por lo menos el nombre y la descripción' />
       </div>
     </form>
   )

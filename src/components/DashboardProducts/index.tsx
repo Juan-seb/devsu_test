@@ -2,16 +2,23 @@
 
 import { values } from '@/types'
 import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import SearchOrAggregate from '../SearchOrAggregate'
 import './styles.css'
 import TableProducts from '../TableProducts'
 
 const DashboardProducts = ({ products }: { products: values[] }): JSX.Element => {
+  const router = useRouter()
   const [search, setSearch] = useState<string>('')
   const [productsFiltered, setProductsFiltered] = useState<values[]>([...products])
   const [pagination, setPagination] = useState<number[]>([0, 5])
   const [pages, setPages] = useState<number[]>([])
   const [pageSelected, setPageSelected] = useState<number>(1)
+
+  useEffect(() => {
+    router.refresh()
+    console.log('refresh')
+  }, [])
 
   useEffect(() => {
     const pages = Math.ceil(productsFiltered.length / 5)

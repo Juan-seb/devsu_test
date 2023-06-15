@@ -2,14 +2,29 @@
 
 import './styles.css'
 import { formProductReducer, initialStateData } from '@/reducers/form_product_reducer'
-import { useReducer } from 'react'
+import { useReducer, useEffect, useState } from 'react'
 import useFetch from '@/hooks/useFetch'
 import Form from '../Form'
 import { FORM_PRODUCT_ACTIONS, actionsType } from '@/actions/form_product_actions'
+import MessageSuccess from '../MessageSuccess'
 
 const RegisterProduct = (): JSX.Element => {
   const fetcher = useFetch()
   const [state, dispatch] = useReducer(formProductReducer, initialStateData)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+
+  useEffect(() => {
+    const status = fetcher.status
+
+    if (status === 0 || status === null) return
+
+    if (status >= 200 && status < 300) {
+      setShowMessage(true)
+      setTimeout(() => {
+        setShowMessage(false)
+      }, 3000)
+    }
+  }, [fetcher.status])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -33,6 +48,11 @@ const RegisterProduct = (): JSX.Element => {
       <div className='container-register'>
         <h2>Formulario de registro</h2>
         <Form state={state} dispatch={dispatch} handleSubmit={handleSubmit} textBtn='Enviar' />
+        {
+          showMessage && (
+            <MessageSuccess message={fetcher.status === 200 ? 'Producto registrado correctamente' : 'Error al registrar el producto'} isSuccess={fetcher.status === 200} />
+          )
+        }
       </div>
     </section>
   )

@@ -16,3 +16,8 @@
   padding: 1rem 0;
   border-bottom: 1px solid #ccc;
 }
+
+.container-edit p {
+  text-align: center;
+  padding: 1rem 0 0 0;
+}

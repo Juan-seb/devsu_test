@@ -2,15 +2,36 @@
 
 import './styles.css'
 import { formProductReducer, initialStateData } from '@/reducers/form_product_reducer'
-import { useReducer } from 'react'
-import useFetch from '@/hooks/useFetch'
-import Form from '../Form'
+import { useReducer, useEffect, useState } from 'react'
 import { values } from '@/types'
-import { FORM_PRODUCT_ACTIONS, actionsType } from '@/actions/form_product_actions'
+import { useRouter } from 'next/navigation'
+import Form from '../Form'
+import MessageSuccess from '../MessageSuccess'
+import useFetch from '@/hooks/useFetch'
 
 const EditProduct = ({ data }: { data: values }): JSX.Element => {
   const fetcher = useFetch()
+  const router = useRouter()
   const [state, dispatch] = useReducer(formProductReducer, initialStateData)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+
+  useEffect(() => {
+    router.refresh()
+  }, [])
+
+  useEffect(() => {
+    const status = fetcher.status
+
+    if (status === 0 || status === null) return
+
+    if (status >= 200 && status < 300) {
+      setShowMessage(true)
+      setTimeout(() => {
+        setShowMessage(false)
+        router.push('/', { shallow: true })
+      }, 3000)
+    }
+  }, [fetcher.status])
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault()
@@ -25,8 +46,6 @@ const EditProduct = ({ data }: { data: values }): JSX.Element => {
         'Content-Type': 'application/json'
       }
     })
-
-    dispatch({ type: FORM_PRODUCT_ACTIONS.SET_RESET as actionsType })
   }
 
   return (
@@ -34,7 +53,13 @@ const EditProduct = ({ data }: { data: values }): JSX.Element => {
       <div className='container-edit'>
         <h2>Formulario de edición</h2>
         <Form state={state} dispatch={dispatch} handleSubmit={handleSubmit} textBtn='Editar producto' initialData={data} />
+        {
+          showMessage && (
+            <MessageSuccess message={fetcher.status === 200 ? 'Producto editado correctamente' : 'Error al editar el producto'} isSuccess={fetcher.status === 200} />
+          )
+        }
       </div>
+
     </section>
   )
 }

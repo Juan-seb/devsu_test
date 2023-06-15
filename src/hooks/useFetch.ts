@@ -11,11 +11,9 @@ const useFetch = (): fetchParams => {
   const [status, setStatus] = useState<number | null>(null)
 
   useEffect(() => {
-    console.log(options)
     const fetchData = async (): Promise<any> => {
       if (options !== null) {
         const { url, method = 'GET', headers: headersList = { authorId: '123' }, body = {} } = options
-        console.log(headersList)
         try {
           const res = await axios({
             method,
@@ -23,7 +21,6 @@ const useFetch = (): fetchParams => {
             headers: headersList,
             data: body
           })
-          console.log(res)
 
           setResponse(res.data)
           setStatus(res.status)

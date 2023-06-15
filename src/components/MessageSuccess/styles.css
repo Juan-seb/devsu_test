@@ -1,0 +1,19 @@
+.container-message {
+  text-align: center;
+  width: 100%;
+  height: auto;
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 20px;
+  right: 5px;
+  border-radius: 0.2rem;
+  padding: 0 0 1rem 0;
+}
+
+.text-error {
+  color: rgb(240, 80, 80);
+}
+
+.text-success {
+  color: rgb(28, 92, 3);
+}

@@ -1,11 +1,27 @@
 'use client'
 
-import { propsTable, values } from '@/types'
 import './styles.css'
-import TableRowProducts from '../TableRowProducts'
+import { propsTable, values } from '@/types'
 import CountPagination from '../CountPagination'
+import TableRowProducts from '../TableRowProducts'
+import { useState, useEffect } from 'react'
+import MessageSuccess from '../MessageSuccess'
 
 const TableProducts = ({ products, productsToShow, setProductsFiltered, results, pages, setPageSelected }: propsTable): JSX.Element => {
+  const [pageStatus, setPageStatus] = useState<number>(0)
+  const [showMessage, setShowMessage] = useState<boolean>(false)
+
+  useEffect(() => {
+    if (pageStatus === 0) return
+
+    if (pageStatus >= 200 && pageStatus < 300) {
+      setShowMessage(true)
+      setTimeout(() => {
+        setShowMessage(false)
+      }, 3000)
+    }
+  }, [pageStatus])
+
   return (
     <div className='table-container'>
       <div className='table-scroll'>
@@ -30,12 +46,24 @@ const TableProducts = ({ products, productsToShow, setProductsFiltered, results,
           </div>
           {
           productsToShow.map((product: values) => (
-            <TableRowProducts key={product.id} product={product} products={products} productsToShow={productsToShow} setProductsFiltered={setProductsFiltered} />
+            <TableRowProducts
+              key={product.id}
+              product={product}
+              products={products}
+              productsToShow={productsToShow}
+              setProductsFiltered={setProductsFiltered}
+              setPageStatus={setPageStatus}
+            />
           ))
         }
         </section>
       </div>
       <CountPagination results={results} pages={pages} setPageSelected={setPageSelected} />
+      {
+        showMessage && (
+          <MessageSuccess message={pageStatus === 200 ? 'Producto eliminado correctamente' : 'Error al eliminar el producto'} isSuccess={pageStatus === 200} />
+        )
+      }
     </div>
   )
 }

@@ -128,8 +128,10 @@ export interface propsTable extends propsTableBase {
 
 export interface propsTableRow extends propsTableBase {
   product: values
+  setPageStatus: Dispatch<SetStateAction<number>>
 }
 
 export interface propsOptionsProduct extends propsTableBase {
   id: string
+  setPageStatus: Dispatch<SetStateAction<number>>
 }

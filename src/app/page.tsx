@@ -2,19 +2,17 @@ import Image from 'next/image'
 import logo from '@/../public/banco-pichincha-logo.png'
 import './styles.css'
 import DashboardProducts from '@/components/DashboardProducts'
-import axios from 'axios'
-import { values } from '@/types'
 
-const getProducts = async (): Promise<any> => await axios({
-  method: 'GET',
-  url: 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products',
+const getProducts = async (): Promise<any> => await fetch('https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products', {
+  cache: 'no-store',
   headers: {
     authorId: '123'
   }
-})
+}).then((res: any) => res.json())
 
 const Home = async (): Promise<any> => {
-  const { data }: { data: values[] } = await getProducts()
+  // const { data }: { data: values[] } = await getProducts()
+  const data = await getProducts()
 
   return (
     <main className='home-main'>

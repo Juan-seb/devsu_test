@@ -5,16 +5,15 @@ import Image from 'next/image'
 import logo from '@/../public/banco-pichincha-logo.png'
 import EditProduct from '@/components/EditProduct'
 
-const getProducts = async (): Promise<any> => await axios({
-  method: 'GET',
-  url: 'https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products',
+const getProducts = async (): Promise<any> => await fetch('https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products', {
+  cache: 'no-store',
   headers: {
     authorId: '123'
   }
-})
+}).then((res: any) => res.json())
 
 const EditProductPage = async ({ params }: { params: { idProduct: string } }): Promise<any> => {
-  const { data }: { data: values[] } = await getProducts()
+  const data = await getProducts()
   const productToEdit = data.filter((product: values) => product.id === params.idProduct)
 
   return (
