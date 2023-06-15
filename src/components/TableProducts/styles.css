@@ -3,6 +3,7 @@
   padding: 1.5rem;
   margin-top: .8rem;
   background-color: white;
+  border-radius: .2rem;
 }
 
 .table-scroll {
@@ -30,6 +31,7 @@
 
 .table-cell {
   width: 250px;
+  padding: 0 .2rem;
 }
 
 .table-cell-options {

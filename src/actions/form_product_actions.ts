@@ -7,6 +7,7 @@ interface form_actions {
   SET_DATE_RELEASE: string
   SET_DATE_REVISION: string
   SET_VALUES: string
+  SET_RESET: string
 }
 
 const FORM_PRODUCT_ACTIONS: form_actions = {
@@ -17,9 +18,10 @@ const FORM_PRODUCT_ACTIONS: form_actions = {
   SET_LOGO: 'SET_LOGO',
   SET_DATE_RELEASE: 'SET_DATE_RELEASE',
   SET_DATE_REVISION: 'SET_DATE_REVISION',
-  SET_VALUES: 'SET_VALUES'
+  SET_VALUES: 'SET_VALUES',
+  SET_RESET: 'SET_RESET'
 }
 
-export type actionsType = 'SET_ID' | 'SET_NAME' | 'SET_DESCRIPTION' | 'SET_LOGO' | 'SET_DATE_RELEASE' | 'SET_DATE_REVISION' | 'SET_VALUES' | 'SET_ERROR_ID'
+export type actionsType = 'SET_ID' | 'SET_NAME' | 'SET_DESCRIPTION' | 'SET_LOGO' | 'SET_DATE_RELEASE' | 'SET_DATE_REVISION' | 'SET_VALUES' | 'SET_ERROR_ID' | 'SET_RESET'
 
 export { FORM_PRODUCT_ACTIONS }

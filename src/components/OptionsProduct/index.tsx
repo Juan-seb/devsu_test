@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 'use client'
 
 import './styles.css'
@@ -6,27 +7,33 @@ import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import dots from '@/../public/more.png'
 import Image from 'next/image'
-import useFetch from '@/hooks/useFetch'
+import axios from 'axios'
 
 const OptionsProduct = ({ id, products, productsToShow, setProductsFiltered }: propsOptionsProduct): JSX.Element => {
   const router = useRouter()
-  const fetcher = useFetch()
   const [showOptions, setShowOptions] = useState<boolean>(false)
 
   const handleClickEdit = (): void => {
     router.push(`/record/${id}`)
   }
 
-  const handleClickDelete = (): void => {
+  const handleClickDelete = async (): Promise<any> => {
     const indexProduct = products.findIndex((product) => product.id === id)
     products.splice(indexProduct, 1)
-    console.log(id)
-    fetcher.request({
-      url: `https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products?id=${id}`,
-      method: 'DELETE'
-    })
-    console.log('hola2')
-    setProductsFiltered([...products])
+
+    try {
+      await axios({
+        method: 'DELETE',
+        url: `https://tribu-ti-staffing-desarrollo-afangwbmcrhucqfh.z01.azurefd.net/ipf-msa-productosfinancieros/bp/products?id=${id}`,
+        headers: {
+          authorId: '123'
+        }
+      })
+
+      setProductsFiltered([...products])
+    } catch (error: any) {
+      console.log(error)
+    }
   }
 
   return (

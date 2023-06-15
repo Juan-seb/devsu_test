@@ -10,7 +10,7 @@ const CountPagination = ({ results, pages, setPageSelected }: propsCountPaginati
         {results} {`${results === 1 ? 'Resultado' : 'Resultados'}`}
       </p>
       <div className='count-select-page'>
-        <select name='' id='' onChange={(e) => setPageSelected(parseInt(e.target.value))}>
+        <select name='' id='' className='select-page' onChange={(e) => setPageSelected(parseInt(e.target.value))}>
           {
             pages.map((page) => (
               <option key={page} value={page}>{page}</option>

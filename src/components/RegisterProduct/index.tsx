@@ -5,6 +5,7 @@ import { formProductReducer, initialStateData } from '@/reducers/form_product_re
 import { useReducer } from 'react'
 import useFetch from '@/hooks/useFetch'
 import Form from '../Form'
+import { FORM_PRODUCT_ACTIONS, actionsType } from '@/actions/form_product_actions'
 
 const RegisterProduct = (): JSX.Element => {
   const fetcher = useFetch()
@@ -23,6 +24,8 @@ const RegisterProduct = (): JSX.Element => {
         'Content-Type': 'application/json'
       }
     })
+
+    dispatch({ type: FORM_PRODUCT_ACTIONS.SET_RESET as actionsType })
   }
 
   return (

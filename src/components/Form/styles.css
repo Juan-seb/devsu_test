@@ -7,11 +7,57 @@
   align-items: center;
 }
 
+.options-container {
+  width: 100%;
+  display: flex;
+  flex-direction: center;
+  justify-content: space-evenly;
+  margin: 1.5rem 0;
+  height: auto;
+}
+
+.options-reset {
+  width: 120px;
+  padding: 1rem .5rem;
+  background-color: rgb(173, 172, 172);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  color: rgb(29, 119, 221);
+  border: none;
+  outline: none;
+  border-radius: .2rem;
+  cursor: pointer;
+}
+
+.options-submit {
+  width: 120px;
+  padding: 1rem .5rem;
+  background-color: #facc15;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  color: rgb(29, 119, 221);
+  border: none;
+  outline: none;
+  border-radius: .2rem;
+  cursor: pointer;
+}
+
+.opacity-60 {
+  opacity: .6;
+  cursor: not-allowed;
+}
+
 @media screen and (min-width: 768px) {
   .form-register-edit{
     width: 700px;
     flex-direction: row;
     flex-wrap: wrap;
     column-gap: 12px;
-  }  
+  }
+  
+  .options-container {
+    width: 50%;
+  }
 }

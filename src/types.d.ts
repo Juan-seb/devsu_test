@@ -25,6 +25,7 @@ export type actionType = { type: actionsType, payload: string }
 | { type: actionsType, payload: string }
 | { type: actionsType, payload: values }
 | { type: actionsType, payload: actionErrorId }
+| { type: actionsType, payload?: undefined }
 
 interface touchStates {
   TOUCHED_OK: string
@@ -57,6 +58,7 @@ export interface fetchParams {
   request: (options: request_params) => void
   response: response[] | null
   error: string | null
+  status: number | null
 }
 
 export interface initialStateReducer {

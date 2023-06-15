@@ -32,6 +32,8 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
   const handleId = async (e: React.ChangeEvent<HTMLInputElement> | React.FocusEvent<HTMLInputElement>): Promise<void> => {
     dispatch({ type: FORM_PRODUCT_ACTIONS.SET_ID as actionsType, payload: e.target.value })
 
+    if (e.target.value.length < 3) return
+
     try {
       const exists: boolean = await fetchValidateId(e.target.value)
 
@@ -43,9 +45,14 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
     }
   }
 
+  const handleReset = (): void => {
+    dispatch({ type: FORM_PRODUCT_ACTIONS.SET_RESET as actionsType })
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
+      onReset={handleReset}
       className='form-register-edit'
     >
       <InputText
@@ -114,7 +121,10 @@ const Form = ({ state, dispatch, handleSubmit, textBtn, initialData }: propsForm
         touched={touched.date_revision as touchedStates}
         disabled
       />
-      <input type='submit' value={textBtn} disabled={isDisabled} />
+      <div className='options-container'>
+        <input type='reset' value='Reiniciar' className='options-reset' />
+        <input type='submit' value={textBtn} disabled={isDisabled} className={`options-submit ${isDisabled ? 'opacity-60' : ''}`} />
+      </div>
     </form>
   )
 }

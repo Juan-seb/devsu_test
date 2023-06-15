@@ -175,6 +175,9 @@ function formProductReducer (state: initialStateReducer, action: actionType): in
         touched: { ...state.touched, id: TOUCHED_STATES.TOUCHED_OK, logo: TOUCHED_STATES.TOUCHED_OK }
       }
     }
+    case (FORM_PRODUCT_ACTIONS.SET_RESET): {
+      return initialStateData
+    }
     default:
       return state
   }

@@ -6,6 +6,7 @@ import { useReducer } from 'react'
 import useFetch from '@/hooks/useFetch'
 import Form from '../Form'
 import { values } from '@/types'
+import { FORM_PRODUCT_ACTIONS, actionsType } from '@/actions/form_product_actions'
 
 const EditProduct = ({ data }: { data: values }): JSX.Element => {
   const fetcher = useFetch()
@@ -24,6 +25,8 @@ const EditProduct = ({ data }: { data: values }): JSX.Element => {
         'Content-Type': 'application/json'
       }
     })
+
+    dispatch({ type: FORM_PRODUCT_ACTIONS.SET_RESET as actionsType })
   }
 
   return (

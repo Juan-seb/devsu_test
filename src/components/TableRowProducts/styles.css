@@ -30,6 +30,7 @@
 .table-cell-product {
   width: 250px;
   height: auto;
+  padding: 0 .2rem;
 }
 
 .table-cell-options {

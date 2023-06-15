@@ -8,6 +8,7 @@ const useFetch = (): fetchParams => {
   const [options, setOptions] = useState<requestParams | null>(null)
   const [response, setResponse] = useState<response[] | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [status, setStatus] = useState<number | null>(null)
 
   useEffect(() => {
     console.log(options)
@@ -25,6 +26,7 @@ const useFetch = (): fetchParams => {
           console.log(res)
 
           setResponse(res.data)
+          setStatus(res.status)
         } catch (error: any) {
           setError(error)
         }
@@ -37,7 +39,8 @@ const useFetch = (): fetchParams => {
     // Request is a function that receives an object with the following structure: { url: string, method: string, headers: { 'Content-Type': string, authorId: string }, body: { [key: string]: string } | {} }
     request: (options: requestParams) => setOptions(options),
     response,
-    error
+    error,
+    status
   }
 }
 
